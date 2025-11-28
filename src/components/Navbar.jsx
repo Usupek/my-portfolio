@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
 const Navbar = ({ navItems, activeSection, onNavClick }) => {
@@ -16,7 +16,7 @@ const Navbar = ({ navItems, activeSection, onNavClick }) => {
           className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 cursor-pointer font-mono"
           onClick={() => handleNav("home")}
         >
-          &lt;DevSec /&gt;
+          /home/usupek
         </div>
 
         {/* Desktop Menu */}

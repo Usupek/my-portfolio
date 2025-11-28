@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { User, Code, Flag, Trophy, FolderGit2 } from "lucide-react";
 
 import Navbar from "../components/Navbar";
@@ -22,58 +22,87 @@ const Portfolio = () => {
   ];
 
   const skills = [
-    { name: "JavaScript", level: "Advanced" },
-    { name: "React / Next.js", level: "Intermediate" },
-    { name: "Python", level: "Advanced" },
-    { name: "Node.js", level: "Intermediate" },
-    { name: "Linux / Bash", level: "Expert" },
-    { name: "Burp Suite", level: "Intermediate" },
-    { name: "Docker", level: "Intermediate" },
-    { name: "SQL Injection", level: "Advanced" },
+    { name: "Express.js", icon: "/Express.svg" },
+    { name: "React.js", icon: "/React.svg" },
+    { name: "Ghidra", icon: "/Ghidra_logo.svg" },
+    { name: "Python", icon: "/Python.svg" },
+    { name: "Node.js", icon: "/Node.js.svg" },
+    { name: "Linux / Bash", icon: "/Arch Linux.svg" },
+    { name: "Burp Suite", icon: "/burp.svg" },
+    { name: "Docker", icon: "/Docker.svg" },
   ];
 
   const ctfWriteups = [
     {
-      title: "HackTheBox: Machine X",
-      category: "Pwn",
-      difficulty: "Hard",
-      date: "Oct 2023",
-      link: "#",
-    },
-    {
-      title: "PicoCTF: Web Exploitation",
+      title: "Hacktoday: Gateway",
       category: "Web",
+      scope: "National",
       difficulty: "Medium",
-      date: "Sep 2023",
-      link: "#",
+      date: "Oct 2025",
+      link: "https://rafi-organization.gitbook.io/usupek/ctfs/national/hacktoday/gateway",
     },
     {
-      title: "CTF Time: Crypto Challenge",
-      category: "Cryptography",
+      title: "IdekCTF: Constructor",
+      category: "Rev",
+      scope: "International",
+      difficulty: "Medium",
+      date: "Sep 2025",
+      link: "https://rafi-organization.gitbook.io/usupek/ctfs/international/idekctf-2025/minecraft-youtuber",
+    },
+    {
+      title: "IdekCTF: Myspace2",
+      category: "pwn",
+      scope: "International",
       difficulty: "Easy",
-      date: "Aug 2023",
+      date: "Aug 2025",
       link: "#",
+    },
+  ];
+
+  const achievements = [
+    {
+      date: "October 2025",
+      title: "Finalist - Rise the Ranger TNI CTF",
+      description:
+        "Qualified as a finalist in a high-stakes national cybersecurity competition organized in collaboration with the TNI. My first time playing an Attack-Defense CTF.",
+      certificateUrl: "#",
+    },
+    {
+      date: "October 2025",
+      title: "Finalist - Srifoton CTF",
+      description:
+        "Secured a spot in the final round after outperforming hundreds of participants in the qualification stage.",
+      certificateUrl: "#",
+    },
+    {
+      date: "August 2025",
+      title: "Finalist - Cyber Breaker Development",
+      description: "blablablabalbal",
+      certificateUrl: "#",
+    },
+    {
+      date: "July 2025",
+      title: "Third place - FIK Cup CTF",
+      description:
+        "Achieved a podium finish (3rd Overall) by successfully identifying and exploiting system vulnerabilities.",
+      certificateUrl: "#",
     },
   ];
 
   const projects = [
     {
-      title: "Secure Chat App",
-      desc: "Aplikasi chat end-to-end encryption menggunakan Socket.io dan React.",
-      stack: ["React", "Node.js", "Socket.io"],
-      link: "#",
+      title: "Batam Campus Expo",
+      desc: "A web application for Batam Campus Expo Event.",
+      stack: ["React.js", "Node.js", "Express.js"],
+      link: "https://github.com/AzrilFahmiardi/Batam-Campus-Expo-2025",
+      image: "/bamex.jpg",
     },
     {
-      title: "Vulnerability Scanner",
-      desc: "Python script sederhana untuk mendeteksi open ports dan outdated services.",
-      stack: ["Python", "Nmap", "Bash"],
+      title: "CTF writeups",
+      desc: "CTF writeups",
+      stack: ["Gitbook"],
       link: "#",
-    },
-    {
-      title: "Personal Blog",
-      desc: "Blog statis menggunakan Next.js dan Markdown untuk dokumentasi belajar.",
-      stack: ["Next.js", "Tailwind", "MDX"],
-      link: "#",
+      image: "/personal-blog.png",
     },
   ];
 
@@ -101,7 +130,7 @@ const Portfolio = () => {
       <AboutSection />
       <SkillsSection skills={skills} />
       <CTFSection ctfWriteups={ctfWriteups} />
-      <AchievementsSection />
+      <AchievementsSection achievements={achievements} />
       <ProjectsSection projects={projects} />
 
       <Footer />

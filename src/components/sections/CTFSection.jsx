@@ -1,7 +1,8 @@
-import React from "react";
 import { Flag, ChevronRight } from "lucide-react";
 
 const CTFSection = ({ ctfWriteups }) => {
+  const gitbookUrl = "https://rafi-organization.gitbook.io/usupek";
+
   return (
     <section id="ctf" className="py-20 px-6">
       <div className="container mx-auto max-w-4xl">
@@ -19,11 +20,27 @@ const CTFSection = ({ ctfWriteups }) => {
               <div className="absolute top-0 right-0 p-2 opacity-10 group-hover:opacity-20 transition-opacity">
                 <Flag size={80} />
               </div>
-              <div className="text-xs font-mono text-purple-400 mb-2">
-                {ctf.category}
+
+              {/* badges category + scope */}
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-[10px] font-mono px-2 py-1 rounded bg-purple-900/40 text-purple-300">
+                  {ctf.category}
+                </span>
+                {ctf.scope && (
+                  <span
+                    className={`text-[10px] font-mono px-2 py-1 rounded border ${
+                      ctf.scope.toLowerCase() === "international"
+                        ? "border-blue-400/60 text-blue-300"
+                        : "border-amber-400/60 text-amber-300"
+                    }`}
+                  >
+                    {ctf.scope}
+                  </span>
+                )}
               </div>
-              <h3 className="text-xl font-bold text-white mb-2">{ctf.title}</h3>
-              <div className="text-xs text-gray-500">{ctf.date}</div>
+
+              <h3 className="text-xl font-bold text-white mb-1">{ctf.title}</h3>
+              <div className="text-xs text-gray-500 mb-3">{ctf.date}</div>
 
               <div className="flex justify-between items-center mt-4">
                 <span
@@ -46,6 +63,18 @@ const CTFSection = ({ ctfWriteups }) => {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* read more ke GitBook */}
+        <div className="mt-6 flex justify-end">
+          <a
+            href={gitbookUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-purple-400 hover:text-purple-300 underline decoration-purple-500/60 decoration-dotted"
+          >
+            read more..
+          </a>
         </div>
       </div>
     </section>

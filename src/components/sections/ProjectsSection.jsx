@@ -1,4 +1,3 @@
-import React from "react";
 import { FolderGit2, Terminal, ExternalLink } from "lucide-react";
 
 const ProjectsSection = ({ projects }) => {
@@ -16,12 +15,22 @@ const ProjectsSection = ({ projects }) => {
               key={idx}
               className="bg-neutral-900 rounded-xl overflow-hidden border border-neutral-800 hover:border-purple-500/50 transition-all group"
             >
-              <div className="h-40 bg-neutral-800 flex items-center justify-center group-hover:bg-neutral-800/80 transition-colors">
-                <Terminal
-                  size={48}
-                  className="text-neutral-600 group-hover:text-purple-500 transition-colors"
-                />
+              {/* Header: image project atau fallback icon Terminal */}
+              <div className="h-40 bg-neutral-800 flex items-center justify-center group-hover:bg-neutral-800/80 transition-colors overflow-hidden">
+                {project.image ? (
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                ) : (
+                  <Terminal
+                    size={48}
+                    className="text-neutral-600 group-hover:text-purple-500 transition-colors"
+                  />
+                )}
               </div>
+
               <div className="p-6">
                 <h3 className="text-xl font-bold text-white mb-2">
                   {project.title}
@@ -29,6 +38,7 @@ const ProjectsSection = ({ projects }) => {
                 <p className="text-gray-400 text-sm mb-4 h-12 overflow-hidden">
                   {project.desc}
                 </p>
+
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.stack.map((tech, tIdx) => (
                     <span
@@ -39,6 +49,7 @@ const ProjectsSection = ({ projects }) => {
                     </span>
                   ))}
                 </div>
+
                 <a
                   href={project.link}
                   className="inline-flex items-center gap-2 text-sm text-white font-medium hover:text-purple-400 transition-colors"

@@ -1,12 +1,79 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
+import { ArrowDown } from "lucide-react";
 
-const BOOT_TEXT = [
-  "> Initiating system...",
-  "> Loading user profile...",
-  "> Mounting file system...",
-  "> Access granted.",
-  "> Type 'help' to see available commands.",
+const AVATAR_URL = "/me2.jpeg";
+
+const NEOFETCH_INFO = [
+  "Ahmad Zainurafi Alfikri",
+  "----------------------------",
+  "Role   : Cybersecurity Enthusiast / Fullstack Dev",
+  "Focus  : Web Exploitation, Binary Exploitation",
+  "Stack  : Express.js, React.js, C, Python",
+  "Tools  : Burp Suite, Ghidra, Docker",
+  "GitHub : github.com/usupek",
+  "",
+  "Tip: enter 'help' to see list of commands",
 ];
+
+const NeofetchBlock = ({ onDone }) => {
+  const [displayedText, setDisplayedText] = useState("");
+  const [imageVisible, setImageVisible] = useState(false);
+  const hasCompletedRef = useRef(false);
+
+  useEffect(() => {
+    const imgTimer = setTimeout(() => {
+      setImageVisible(true);
+    }, 100);
+
+    const fullText = NEOFETCH_INFO.join("\n");
+    let index = 0;
+    let timeoutId;
+
+    const step = () => {
+      setDisplayedText(fullText.slice(0, index));
+
+      if (index < fullText.length) {
+        index += 1;
+        timeoutId = setTimeout(step, 10);
+      } else {
+        if (!hasCompletedRef.current) {
+          hasCompletedRef.current = true;
+          if (onDone) onDone();
+        }
+      }
+    };
+
+    timeoutId = setTimeout(step, 200);
+
+    return () => {
+      clearTimeout(timeoutId);
+      clearTimeout(imgTimer);
+    };
+  }, []);
+
+  return (
+    <div className="mb-4">
+      <div className="flex gap-4 items-start">
+        {/* Avatar / Foto Kamu dengan fade-in from top */}
+        <div
+          className={`w-40 h-30 md:w-40 md:h-30 rounded-xl overflow-hidden border border-neutral-700 flex-shrink-0 shadow-[0_0_15px_rgba(0,0,0,0.6)] transform transition-all duration-700 ease-out
+          ${imageVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"}`}
+        >
+          <img
+            src={AVATAR_URL}
+            alt="Profile"
+            className="w-full h-full object-cover"
+          />
+        </div>
+
+        {/* Text neofetch dengan typewriter karakter-per-karakter */}
+        <div className="text-green-400 text-xs md:text-sm whitespace-pre">
+          {displayedText}
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const TerminalHero = ({ onNavigateSection }) => {
   const [terminalOutput, setTerminalOutput] = useState([]);
@@ -16,69 +83,50 @@ const TerminalHero = ({ onNavigateSection }) => {
   const terminalBodyRef = useRef(null);
   const inputRef = useRef(null);
 
-  // Flag untuk handle StrictMode
   const hasBootedRef = useRef(false);
 
   const fileSystem = {
     "about_me.txt": {
       id: "about",
       content:
-        "Halo! Saya [Nama Kamu].\nSeorang Cybersecurity Enthusiast & Fullstack Developer.\nFokus pada Web Exploitation dan Secure Coding.",
+        "Hello! I'm Rafi.\nA Cybersecurity Enthusiast & Fullstack Developer.\nFocusing on Web Exploitation and Pwn.",
     },
     "skills.json": {
       id: "skills",
       content:
-        '{ "languages": ["JS", "Python"], "tools": ["Burp Suite", "Docker", "Nmap"] }',
+        '{ "languages": ["JS", "Python"], "tools": ["Burp Suite", "Docker", "Ghidra"] }',
     },
     "ctf_writeups.md": {
       id: "ctf",
-      content:
-        "Latest Writeups:\n- HackTheBox: Machine X (Pwn)\n- PicoCTF: Web Exploitation\n- Crypto Challenge",
+      content: "Latest Writeups:\n- blablabla",
     },
     "achievements.log": {
       id: "achievements",
-      content:
-        "[2023] Juara 1 National CTF\n[2023] Finalist Hackathon Cyber Defense",
+      content: "tesssdsdsdsds",
     },
     "projects.py": {
       id: "projects",
       content:
-        'def list_projects():\n  return ["Secure Chat App", "Vuln Scanner", "Personal Blog"]',
+        'def list_projects():\n  return ["Batam campus Expo", "CTF writeups", "Personal Blog"]',
     },
   };
 
   useEffect(() => {
-    // Cegah efek dijalankan dua kali tanpa reset
     if (hasBootedRef.current) return;
     hasBootedRef.current = true;
 
-    let delay = 0;
-    const timeouts = [];
-
-    BOOT_TEXT.forEach((text, index) => {
-      const id = setTimeout(() => {
-        setTerminalOutput((prev) => [
-          ...prev,
-          { type: "system", content: text },
-        ]);
-
-        if (index === BOOT_TEXT.length - 1) {
-          setIsBooting(false);
-        }
-      }, delay);
-
-      timeouts.push(id);
-      delay += 800;
-    });
+    const id = setTimeout(() => {
+      setTerminalOutput([{ type: "neofetch" }]);
+      // isBooting akan di-set false oleh NeofetchBlock saat selesai ngetik
+    }, 300);
 
     return () => {
-      // PENTING: reset flag + bersihin timeout
       hasBootedRef.current = false;
-      timeouts.forEach((id) => clearTimeout(id));
+      clearTimeout(id);
     };
   }, []);
 
-  // Auto scroll & fokus ke input
+  // Auto-scroll & auto-focus setelah boot selesai
   useEffect(() => {
     if (terminalBodyRef.current) {
       terminalBodyRef.current.scrollTop = terminalBodyRef.current.scrollHeight;
@@ -101,17 +149,24 @@ const TerminalHero = ({ onNavigateSection }) => {
 
       const newHistory = [
         ...terminalOutput,
-        { type: "user", content: `root@devsec:~$ ${command}` },
+        { type: "user", content: `usupek@dagh:~/portfolio$ ${command}` },
       ];
 
       switch (cmd) {
         case "help":
           output =
-            "Available commands:\n  ls            List files (sections)\n  cat <file>    Read file content\n  cd <file>     Navigate to section\n  clear         Clear terminal";
+            "Available commands:\n" +
+            "  ls             List files (sections)\n" +
+            "  cat <file>     Read file content\n" +
+            "  cd <file>      Navigate to section\n" +
+            "  neofetch       Show system / bio info\n" +
+            "  clear          Clear terminal";
           break;
+
         case "ls":
           output = Object.keys(fileSystem).join("   ");
           break;
+
         case "cat":
           if (!arg) {
             output = "Usage: cat <filename>";
@@ -123,6 +178,7 @@ const TerminalHero = ({ onNavigateSection }) => {
             type = "error";
           }
           break;
+
         case "cd":
           if (!arg) {
             output = "Usage: cd <filename>";
@@ -137,12 +193,20 @@ const TerminalHero = ({ onNavigateSection }) => {
             type = "error";
           }
           break;
+
+        case "neofetch":
+          newHistory.push({ type: "neofetch" });
+          output = "";
+          break;
+
         case "clear":
           setTerminalOutput([]);
           setInputVal("");
           return;
+
         case "":
           break;
+
         default:
           output = `Command not found: ${cmd}`;
           type = "error";
@@ -182,26 +246,37 @@ const TerminalHero = ({ onNavigateSection }) => {
             className="p-6 h-[400px] overflow-y-auto cursor-text scroll-smooth"
             onClick={() => !isBooting && inputRef.current?.focus()}
           >
-            {terminalOutput.map((line, idx) => (
-              <div key={idx} className="mb-1 break-words">
-                {line.type === "user" ? (
-                  <span className="text-gray-100 font-bold">
-                    {line.content}
-                  </span>
-                ) : line.type === "error" ? (
-                  <span className="text-red-400">{line.content}</span>
-                ) : (
-                  <span className="text-green-400 whitespace-pre-wrap">
-                    {line.content}
-                  </span>
-                )}
-              </div>
-            ))}
+            {terminalOutput.map((line, idx) => {
+              if (line.type === "neofetch") {
+                return (
+                  <NeofetchBlock key={idx} onDone={() => setIsBooting(false)} />
+                );
+              }
+
+              // Line biasa (system/user/error)
+              return (
+                <div key={idx} className="mb-1 break-words">
+                  {line.type === "user" ? (
+                    <span className="text-gray-100 font-bold">
+                      {line.content}
+                    </span>
+                  ) : line.type === "error" ? (
+                    <span className="text-red-400 whitespace-pre-wrap">
+                      {line.content}
+                    </span>
+                  ) : (
+                    <span className="text-green-400 whitespace-pre-wrap">
+                      {line.content}
+                    </span>
+                  )}
+                </div>
+              );
+            })}
 
             {!isBooting && (
               <div className="flex items-center">
                 <span className="text-purple-400 mr-2 font-bold">
-                  root@devsec:~$
+                  usupek@dagh:~/portfolio$
                 </span>
                 <input
                   ref={inputRef}
@@ -217,15 +292,9 @@ const TerminalHero = ({ onNavigateSection }) => {
           </div>
         </div>
 
-        <div className="mt-6 text-center text-gray-500 text-sm animate-pulse">
-          Tip: Coba ketik{" "}
-          <span className="text-purple-400 bg-purple-900/20 px-1 rounded">
-            ls
-          </span>{" "}
-          lalu{" "}
-          <span className="text-purple-400 bg-purple-900/20 px-1 rounded">
-            cd nama_file
-          </span>
+        <div className="mt-6 flex justify-center items-center gap-2 text-gray-500 text-sm animate-pulse">
+          Scroll down{" "}
+          <ArrowDown className="text-purple-400 bg-purple-900/20 px-1 rounded" />
         </div>
       </div>
     </section>

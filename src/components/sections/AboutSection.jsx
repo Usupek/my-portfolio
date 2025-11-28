@@ -1,4 +1,3 @@
-import React from "react";
 import { User, Github, Linkedin, Mail } from "lucide-react";
 
 const AboutSection = () => {
@@ -11,28 +10,32 @@ const AboutSection = () => {
         </div>
         <div className="bg-neutral-900/50 p-8 rounded-2xl border border-neutral-800 hover:border-purple-500/30 transition-all duration-300">
           <p className="text-lg leading-relaxed text-gray-300">
-            Halo! Saya adalah seorang pengembang perangkat lunak yang memiliki
-            ketertarikan mendalam pada dunia{" "}
-            <span className="text-purple-400 font-semibold">Cybersecurity</span>
-            . Saya suka memecahkan masalah kompleks, bermain Capture The Flag
-            (CTF) di akhir pekan, dan membangun aplikasi web yang aman dan
-            efisien.
+            Hello! I'm
+            <span className="text-purple-400 font-semibold"> Rafi</span>. I'm a
+            Computer Science student at
+            <span className="text-purple-400 font-semibold">
+              {" "}
+              Universitas Gadjah Mada
+            </span>
+            . I love everything related to Cybersecurity and Web Development. I
+            play CTFs every weekend. In CTFs I play by the name{" "}
+            <span className="text-purple-400 font-semibold">Usupek</span>.
           </p>
           <p className="mt-4 text-lg leading-relaxed text-gray-300">
-            Saat ini saya sedang fokus mendalami{" "}
+            I'm currently focusing on{" "}
             <span className="text-purple-400">Binary Exploitation</span> dan{" "}
             <span className="text-purple-400">Web Exploitation</span>.
           </p>
 
           <div className="mt-6 flex gap-4">
             <a
-              href="#"
+              href="https://github.com/usupek"
               className="text-gray-400 hover:text-white transition-colors"
             >
               <Github size={24} />
             </a>
             <a
-              href="#"
+              href="https://www.linkedin.com/in/ahmadzainurafialfikri/"
               className="text-gray-400 hover:text-white transition-colors"
             >
               <Linkedin size={24} />
