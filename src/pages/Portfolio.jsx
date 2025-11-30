@@ -55,7 +55,7 @@ const Portfolio = () => {
       scope: "International",
       difficulty: "Easy",
       date: "Aug 2025",
-      link: "#",
+      link: "https://rafi-organization.gitbook.io/usupek/ctfs/international/idekctf-2025/myspace2",
     },
   ];
 
@@ -65,27 +65,27 @@ const Portfolio = () => {
       title: "Finalist - Rise the Ranger TNI CTF",
       description:
         "Qualified as a finalist in a high-stakes national cybersecurity competition organized in collaboration with the TNI. My first time playing an Attack-Defense CTF.",
-      certificateUrl: "#",
+      certificateUrl: "/sertifs/sertif-rtr.jpeg",
     },
     {
       date: "October 2025",
       title: "Finalist - Srifoton CTF",
       description:
         "Secured a spot in the final round after outperforming hundreds of participants in the qualification stage.",
-      certificateUrl: "#",
+      certificateUrl: "/sertifs/sertif-srifoton.jpeg",
     },
     {
       date: "August 2025",
       title: "Finalist - Cyber Breaker Development",
       description:
         "Secured a spot in the final round after outperforming hundreds of participants in the qualification stage.",
-      certificateUrl: "#",
+      certificateUrl: "/sertifs/sertif-cbd.jpeg",
     },
     {
       date: "July 2025",
       title: "Third place - FIK Cup CTF",
       description: "Achieved a podium finish (3rd Overall).",
-      certificateUrl: "#",
+      certificateUrl: "/sertifs/sertif-fik.jpeg",
     },
   ];
 
