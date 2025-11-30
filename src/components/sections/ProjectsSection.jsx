@@ -54,7 +54,7 @@ const ProjectsSection = ({ projects }) => {
                   href={project.link}
                   className="inline-flex items-center gap-2 text-sm text-white font-medium hover:text-purple-400 transition-colors"
                 >
-                  Lihat Repository <ExternalLink size={14} />
+                  Repository <ExternalLink size={14} />
                 </a>
               </div>
             </div>
