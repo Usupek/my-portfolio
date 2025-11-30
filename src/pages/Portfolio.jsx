@@ -77,14 +77,14 @@ const Portfolio = () => {
     {
       date: "August 2025",
       title: "Finalist - Cyber Breaker Development",
-      description: "blablablabalbal",
+      description:
+        "Secured a spot in the final round after outperforming hundreds of participants in the qualification stage.",
       certificateUrl: "#",
     },
     {
       date: "July 2025",
       title: "Third place - FIK Cup CTF",
-      description:
-        "Achieved a podium finish (3rd Overall) by successfully identifying and exploiting system vulnerabilities.",
+      description: "Achieved a podium finish (3rd Overall).",
       certificateUrl: "#",
     },
   ];
@@ -101,8 +101,8 @@ const Portfolio = () => {
       title: "CTF writeups",
       desc: "CTF writeups",
       stack: ["Gitbook"],
-      link: "#",
-      image: "/personal-blog.png",
+      link: "https://github.com/Usupek/ctf-writeups",
+      image: "/gitbook.jpg",
     },
   ];
 

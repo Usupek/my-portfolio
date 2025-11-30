@@ -8,8 +8,8 @@ const NEOFETCH_INFO = [
   "----------------------------",
   "Role   : Cybersecurity Enthusiast / Fullstack Dev",
   "Focus  : Web Exploitation, Binary Exploitation",
-  "Stack  : Express.js, React.js, C, Python",
-  "Tools  : Burp Suite, Ghidra, Docker",
+  "Stack  : Express.js, React.js, C, Python, etc.",
+  "Tools  : Burp Suite, Ghidra, Docker, etc.",
   "GitHub : github.com/usupek",
   "",
   "Tip: enter 'help' to see list of commands",
@@ -53,10 +53,10 @@ const NeofetchBlock = ({ onDone }) => {
 
   return (
     <div className="mb-4">
-      <div className="flex gap-4 items-start">
-        {/* Avatar / Foto Kamu dengan fade-in from top */}
+      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-start">
+        {/* Avatar dengan ukuran responsif */}
         <div
-          className={`w-40 h-30 md:w-40 md:h-30 rounded-xl overflow-hidden border border-neutral-700 flex-shrink-0 shadow-[0_0_15px_rgba(0,0,0,0.6)] transform transition-all duration-700 ease-out
+          className={`w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-30 lg:h-40 rounded-xl overflow-hidden border border-neutral-700 flex-shrink-0 shadow-[0_0_15px_rgba(0,0,0,0.6)] transform transition-all duration-700 ease-out
           ${imageVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"}`}
         >
           <img
@@ -66,8 +66,8 @@ const NeofetchBlock = ({ onDone }) => {
           />
         </div>
 
-        {/* Text neofetch dengan typewriter karakter-per-karakter */}
-        <div className="text-green-400 text-xs md:text-sm whitespace-pre">
+        {/* Text neofetch dengan wrap supaya nggak overflow di HP */}
+        <div className="text-green-400 text-[11px] sm:text-xs md:text-sm whitespace-pre-wrap break-words">
           {displayedText}
         </div>
       </div>
@@ -224,18 +224,18 @@ const TerminalHero = ({ onNavigateSection }) => {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center pt-20 px-4 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-900/20 via-neutral-950 to-neutral-950"
+      className="min-h-screen flex items-center justify-center pt-20 px-3 sm:px-4 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-900/20 via-neutral-950 to-neutral-950"
     >
-      <div className="w-full max-w-3xl">
-        <div className="rounded-lg overflow-hidden border border-purple-500/30 shadow-[0_0_30px_rgba(168,85,247,0.15)] bg-neutral-900/95 backdrop-blur font-mono text-sm md:text-base">
+      <div className="w-full max-w-2xl sm:max-w-3xl lg:max-w-4xl">
+        <div className="rounded-lg overflow-hidden border border-purple-500/30 shadow-[0_0_30px_rgba(168,85,247,0.15)] bg-neutral-900/95 backdrop-blur font-mono text-[11px] sm:text-xs md:text-sm">
           {/* Header Terminal */}
-          <div className="bg-neutral-800/80 px-4 py-2 flex items-center gap-2 border-b border-purple-500/20">
+          <div className="bg-neutral-800/80 px-3 sm:px-4 py-2 flex items-center gap-2 border-b border-purple-500/20">
             <div className="flex gap-2">
-              <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
-              <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-              <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
+              <div className="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
+              <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
+              <div className="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
             </div>
-            <span className="ml-2 text-xs text-gray-400">
+            <span className="ml-2 text-[10px] sm:text-xs text-gray-400 truncate">
               usupek@dagh:~/portfolio
             </span>
           </div>
@@ -243,7 +243,7 @@ const TerminalHero = ({ onNavigateSection }) => {
           {/* Body Terminal */}
           <div
             ref={terminalBodyRef}
-            className="p-6 h-[400px] overflow-y-auto cursor-text scroll-smooth"
+            className="p-4 sm:p-6 h-[260px] sm:h-[320px] md:h-[380px] lg:h-[420px] max-h-[70vh] overflow-y-auto cursor-text scroll-smooth"
             onClick={() => !isBooting && inputRef.current?.focus()}
           >
             {terminalOutput.map((line, idx) => {
@@ -274,8 +274,8 @@ const TerminalHero = ({ onNavigateSection }) => {
             })}
 
             {!isBooting && (
-              <div className="flex items-center">
-                <span className="text-purple-400 mr-2 font-bold">
+              <div className="flex items-center flex-wrap gap-1">
+                <span className="text-purple-400 mr-1 sm:mr-2 font-bold">
                   usupek@dagh:~/portfolio$
                 </span>
                 <input
@@ -284,7 +284,7 @@ const TerminalHero = ({ onNavigateSection }) => {
                   value={inputVal}
                   onChange={(e) => setInputVal(e.target.value)}
                   onKeyDown={handleCommand}
-                  className="bg-transparent border-none outline-none text-gray-100 flex-1 font-mono"
+                  className="bg-transparent border-none outline-none text-gray-100 flex-1 min-w-[120px] font-mono"
                   autoComplete="off"
                 />
               </div>
@@ -292,9 +292,9 @@ const TerminalHero = ({ onNavigateSection }) => {
           </div>
         </div>
 
-        <div className="mt-6 flex justify-center items-center gap-2 text-gray-500 text-sm animate-pulse">
-          Scroll down{" "}
-          <ArrowDown className="text-purple-400 bg-purple-900/20 px-1 rounded" />
+        <div className="mt-6 flex justify-center items-center gap-2 text-gray-500 text-xs sm:text-sm animate-pulse">
+          <span className="truncate">Scroll down</span>
+          <ArrowDown className="text-purple-400 bg-purple-900/20 px-1 rounded w-4 h-4 sm:w-5 sm:h-5" />
         </div>
       </div>
     </section>

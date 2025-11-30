@@ -1,4 +1,4 @@
-import { User, Github, Linkedin, Mail } from "lucide-react";
+import { User, Github, Linkedin } from "lucide-react";
 
 const AboutSection = () => {
   return (
@@ -39,12 +39,6 @@ const AboutSection = () => {
               className="text-gray-400 hover:text-white transition-colors"
             >
               <Linkedin size={24} />
-            </a>
-            <a
-              href="#"
-              className="text-gray-400 hover:text-white transition-colors"
-            >
-              <Mail size={24} />
             </a>
           </div>
         </div>
