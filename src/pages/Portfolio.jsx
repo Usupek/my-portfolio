@@ -93,7 +93,7 @@ const Portfolio = () => {
     {
       title: "Batam Campus Expo",
       desc: "A web application for Batam Campus Expo Event.",
-      stack: ["React.js", "Node.js", "Express.js"],
+      stack: ["React.js", "Node.js", "Express.js", "MySQL"],
       link: "https://github.com/AzrilFahmiardi/Batam-Campus-Expo-2025",
       image: "/bamex.jpg",
     },
@@ -103,6 +103,13 @@ const Portfolio = () => {
       stack: ["Gitbook"],
       link: "https://github.com/Usupek/ctf-writeups",
       image: "/gitbook.jpg",
+    },
+    {
+      title: "Loax App",
+      desc: "A fullstack app to help people sell and buy secondhand goods easily",
+      stack: ["Next.js", "Express.js", "MySQL", "Docker"],
+      link: "https://github.com/WibiLaksono/kuding-fix",
+      image: "/Loax.jpg",
     },
   ];
 
